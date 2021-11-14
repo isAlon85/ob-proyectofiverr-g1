@@ -25,6 +25,7 @@ public class CardController/*<CarService>*/ {
         this.cardService = (CardService) cardService;
     }
 
+    //teste
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all cards in DB")
