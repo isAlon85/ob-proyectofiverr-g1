@@ -1,11 +1,9 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "cards")
 public class Card {
 
     @Id
@@ -14,17 +12,19 @@ public class Card {
     private String title;
     private String description;
     private String username;
+    private String category;
     private Double rating;
     private Double price;
 
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, Double rating, Double price) {
+    public Card(Long id, String title, String description, String username, String category,Double rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.username = username;
+        this.category = category;
         this.rating = rating;
         this.price = price;
     }
@@ -59,6 +59,14 @@ public class Card {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Double getRating() {

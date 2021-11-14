@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import java.util.List;
-
 @Service
 public class CardService {
 
@@ -37,6 +35,14 @@ public class CardService {
         if (card.getId() != null)
             return ResponseEntity.badRequest().build();
 
+        if (card.getUsername().length() > 16) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        if (card.getDescription().length() > 50) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Card result = cardRepository.save(card);
         return ResponseEntity.ok(result);
     }
@@ -48,6 +54,14 @@ public class CardService {
 
         if (!cardRepository.existsById(card.getId()))
             return ResponseEntity.notFound().build();
+
+        if (card.getUsername().length() > 16) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        if (card.getDescription().length() > 50) {
+            return ResponseEntity.badRequest().build();
+        }
 
         Card result = cardRepository.save(card);
         return ResponseEntity.ok(result);
