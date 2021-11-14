@@ -9,6 +9,8 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//    @OneToOne
+//    @JoinColumn(name="idCard", nullable=false)
     private String title;
     private String description;
     private String username;
@@ -33,9 +35,9 @@ public class Card {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getTitle() {
         return title;
