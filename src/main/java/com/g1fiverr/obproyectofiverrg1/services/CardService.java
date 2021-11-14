@@ -17,8 +17,11 @@ public class CardService {
         this.cardRepository = cardRepository;
     }
 
-    public List<Card> findAll(){
-        return cardRepository.findAll();
+    public ResponseEntity<List<Card>> findAll(){
+        if (cardRepository.count() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(cardRepository.findAll());
     }
 
     public ResponseEntity<Card> findOneById(Long id){
@@ -29,6 +32,11 @@ public class CardService {
         else
             return ResponseEntity.notFound().build();
     }
+
+//    //En desarrollo por Daniel
+//    public ResponseEntity<List<Card>> findByCategory(String category){
+//        Optional<List<Card>> listCardOpt = cardRepository.fi
+//    }
 
     public ResponseEntity<Card> create(Card card){
 

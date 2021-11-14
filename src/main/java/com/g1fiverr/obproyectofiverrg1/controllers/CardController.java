@@ -28,8 +28,9 @@ public class CardController/*<CarService>*/ {
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all cards in DB")
-    public List<Card> findAll() {
-        return cardService.findAll();
+    public ResponseEntity<List<Card>> findAll() {
+        ResponseEntity result = cardService.findAll();
+        return result;
     }
 
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
