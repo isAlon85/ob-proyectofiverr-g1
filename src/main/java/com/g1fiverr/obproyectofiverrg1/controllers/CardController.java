@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,7 @@ public class CardController/*<CarService>*/ {
         this.cardService = (CardService) cardService;
     }
 
-    //testing
-    //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all cards in DB")
     public ResponseEntity<List<Card>> findAll() {
@@ -34,14 +34,14 @@ public class CardController/*<CarService>*/ {
         return result;
     }
 
-    //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/" + "{id}")
     @ApiOperation("Find a card in DB by ID")
     public ResponseEntity<Card> findOneById(@PathVariable Long id) {
         return cardService.findOneById(id);
     }
 
-    //    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(ROOT)
     @ApiOperation("Create a card in DB with a JSON")
     public ResponseEntity<Card> create(@RequestBody Card card) {
@@ -54,7 +54,7 @@ public class CardController/*<CarService>*/ {
     }
 
     @PutMapping(ROOT)
-//    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Update a card in DB with a JSON")
     public ResponseEntity<Card> updateBook(@RequestBody Card card) {
         ResponseEntity<Card> result = cardService.update(card);
@@ -69,7 +69,7 @@ public class CardController/*<CarService>*/ {
     }
 
     @DeleteMapping(ROOT + "/" + "{id}")
-//    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Delete a card in DB by ID")
     public ResponseEntity delete(@PathVariable Long id) {
         ResponseEntity result = cardService.delete(id);
@@ -81,7 +81,7 @@ public class CardController/*<CarService>*/ {
     }
 
     //    @ApiIgnore
-//    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(ROOT + "/" + "restartDB")
     public ResponseEntity deleteAll(@RequestHeader HttpHeaders headers) {
         ResponseEntity result = cardService.deleteAll();

@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -27,8 +29,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //Deshabilita CSRF para post sin token
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//    }
+
+    @Bean
+    public HttpFirewall looseHttpFirewall(){
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowBackSlash(true);
+        firewall.setAllowSemicolon(true);
+        return firewall;
     }
 }
