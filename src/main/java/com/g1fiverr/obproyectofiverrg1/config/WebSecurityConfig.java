@@ -35,11 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.csrf().disable();
 //    }
 
-    @Bean
-    public HttpFirewall looseHttpFirewall(){
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowBackSlash(true);
-        firewall.setAllowSemicolon(true);
-        return firewall;
-    }
+//    @Bean
+//    public HttpFirewall looseHttpFirewall(){
+//        StrictHttpFirewall firewall = new StrictHttpFirewall();
+//        firewall.setAllowBackSlash(true);
+//        firewall.setAllowSemicolon(true);
+//        return firewall;
+//    }
 }

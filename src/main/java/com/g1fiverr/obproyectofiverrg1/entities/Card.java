@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Card {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
     @Column
@@ -21,15 +22,11 @@ public class Card {
     private Double rating;
     @Column
     private Double price;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, String category,Double rating, Double price, User user) {
+    public Card(Long id, String title, String description, String username, String category,Double rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -37,7 +34,6 @@ public class Card {
         this.category = category;
         this.rating = rating;
         this.price = price;
-        this.user = user;
     }
 
     public Long getId() {
@@ -90,10 +86,6 @@ public class Card {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public User getUser() {
-        return user;
     }
 
 }
