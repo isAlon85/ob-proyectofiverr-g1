@@ -1,7 +1,6 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -9,32 +8,31 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToOne(mappedBy="idCard")
+    @Column
     private Long id;
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
     private String email;
-    @OneToOne(mappedBy="id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Card card;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String email, Card card) {
+    public User(Long id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.card = card;
     }
 
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getUsername() {
         return username;
@@ -60,11 +58,8 @@ public class User {
         this.email = email;
     }
 
-    public Card getListCards() {
+    public Card getCard() {
         return card;
     }
 
-    public void setListCards(Card card) {
-        this.card = card;
-    }
 }
