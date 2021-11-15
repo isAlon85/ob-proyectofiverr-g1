@@ -1,6 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "cards")
@@ -35,6 +36,28 @@ public class Card {
         this.rating = rating;
         this.price = price;
     }
+
+    public Card(Long id, String title, String description, String username, String category,Double rating, Double price,
+                Set<Picture> pictures) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.username = username;
+        this.category = category;
+        this.rating = rating;
+        this.price = price;
+        this.pictures = pictures;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "CARD_FOTOS",
+            joinColumns = {
+                    @JoinColumn(name = "CARD_ID")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "PICTURE_ID") })
+
+    private Set<Picture> pictures;
 
     public Long getId() {
         return id;
