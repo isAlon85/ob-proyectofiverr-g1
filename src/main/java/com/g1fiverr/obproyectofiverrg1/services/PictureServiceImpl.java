@@ -35,20 +35,12 @@ public class PictureServiceImpl implements PictureService{
             return ResponseEntity.notFound().build();
     }
 
-//    //En desarrollo por Daniel
-//    public ResponseEntity<List<Picture>> findByCategory(String category){
-//        Optional<List<Picture>> listPictureOpt = pictureRepository.fi
-//    }
-
     @Override
     public ResponseEntity<Picture> create(Picture picture){
 
         if (picture.getId() != null)
             return ResponseEntity.badRequest().build();
 
-        if (picture.getDescription().length() > 50) {
-            return ResponseEntity.badRequest().build();
-        }
 
         Picture result = pictureRepository.save(picture);
         return ResponseEntity.ok(result);
@@ -63,9 +55,6 @@ public class PictureServiceImpl implements PictureService{
         if (!pictureRepository.existsById(picture.getId()))
             return ResponseEntity.notFound().build();
 
-        if (picture.getDescription().length() > 50) {
-            return ResponseEntity.badRequest().build();
-        }
 
         Picture result = pictureRepository.save(picture);
         return ResponseEntity.ok(result);
