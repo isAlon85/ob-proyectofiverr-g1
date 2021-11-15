@@ -1,6 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -37,27 +38,39 @@ public class Card {
         this.price = price;
     }
 
-    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price,
-                Set<Picture> pictures) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.username = username;
-        this.category = category;
-        this.rating = rating;
-        this.price = price;
-        this.pictures = pictures;
-    }
+//    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price,
+//                Set<Picture> pictures) {
+//        this.id = id;
+//        this.title = title;
+//        this.description = description;
+//        this.username = username;
+//        this.category = category;
+//        this.rating = rating;
+//        this.price = price;
+//        this.pictures = pictures;
+//    }
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "CARD_PICTURES",
             joinColumns = {
-                    @JoinColumn(name = "CARD_ID")
+                    @JoinColumn(name = "CARD_ID", referencedColumnName = "id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "PICTURE_ID") })
+                    @JoinColumn(name = "PICTURE_ID", referencedColumnName = "id") })
 
-    private Set<Picture> pictures;
+    private Set<Picture> pictures = new HashSet<>();
+
+    public void addPicture(Picture picture){
+        pictures.add(picture);
+        picture.setCard(this);
+    }
+
+//    public void removePicture(Picture picture, boolean pictureExists){
+//        pictures.remove(picture);
+//        if (pictureExists) {
+//            picture.getCard().remove(this);
+//        }
+//    }
 
     public Long getId() {
         return id;
@@ -111,4 +124,17 @@ public class Card {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", username='" + username + '\'' +
+                ", category=" + category +
+                ", rating=" + rating +
+                ", price=" + price +
+                ", pictures=" + pictures +
+                '}';
+    }
 }

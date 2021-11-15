@@ -1,7 +1,12 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pictures")
@@ -15,6 +20,10 @@ public class Picture {
     @Column
     private URI uri;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
+    private Card card;
+
     public Picture() {
     }
 
@@ -25,6 +34,14 @@ public class Picture {
 
     public Long getId() {
         return id;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public void setId(Long id) {

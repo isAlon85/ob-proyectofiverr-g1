@@ -32,6 +32,9 @@ public class ObProyectofiverrG1Application {
 		System.out.println("Card's number in DB: " + cardRepository.findAll().size());
 		System.out.println("Picture's number in DB: " + pictureRepository.findAll().size());
 
+		card1.addPicture(picture1);
+		System.out.println("Card 1: " + card1.toString());
+		System.out.println("Card 1 + picture: " + picture1.getCard().toString());
 	}
 
 }
