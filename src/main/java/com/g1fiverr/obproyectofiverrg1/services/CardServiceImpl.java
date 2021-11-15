@@ -50,7 +50,7 @@ public class CardServiceImpl implements CardService {
             return ResponseEntity.badRequest().build();
         }
 
-        if (card.getDescription().length() > 50) {
+        if (card.getTitle().length() > 50) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -71,7 +71,7 @@ public class CardServiceImpl implements CardService {
             return ResponseEntity.badRequest().build();
         }
 
-        if (card.getDescription().length() > 50) {
+        if (card.getTitle().length() > 50) {
             return ResponseEntity.badRequest().build();
         }
 

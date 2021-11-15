@@ -1,11 +1,13 @@
 package com.g1fiverr.obproyectofiverrg1;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
-import com.g1fiverr.obproyectofiverrg1.services.CardServiceImpl;
-import com.g1fiverr.obproyectofiverrg1.services.PictureServiceImpl;
+import com.g1fiverr.obproyectofiverrg1.entities.Picture;
+import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
+import com.g1fiverr.obproyectofiverrg1.repositories.PictureRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import java.net.URI;
 
 @SpringBootApplication
 public class ObProyectofiverrG1Application {
@@ -13,13 +15,22 @@ public class ObProyectofiverrG1Application {
 	public static void main(String[] args) {
 
 		ApplicationContext context = SpringApplication.run(ObProyectofiverrG1Application.class, args);
-		CardServiceImpl service1 = context.getBean(CardServiceImpl.class);
-		PictureServiceImpl service2 = context.getBean(PictureServiceImpl.class);
+		CardRepository cardRepository = context.getBean(CardRepository.class);
+		PictureRepository pictureRepository = context.getBean(PictureRepository.class);
 
-		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", "Diseño",5D, 13D);
-		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", "Picateclas",3.5D, 9.99D);
-		service1.create(card1);
-		service1.create(card2);
+		System.out.println("Card's number in DB: " + cardRepository.findAll().size());
+		System.out.println("Picture's number in DB: " + pictureRepository.findAll().size());
+
+		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", 2,5, 13D);
+		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", 3,3, 9.99D);
+		cardRepository.save(card1);
+		cardRepository.save(card2);
+
+		Picture picture1 = new Picture(null, URI.create("https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-design.jpg"));
+		pictureRepository.save(picture1);
+
+		System.out.println("Card's number in DB: " + cardRepository.findAll().size());
+		System.out.println("Picture's number in DB: " + pictureRepository.findAll().size());
 
 	}
 

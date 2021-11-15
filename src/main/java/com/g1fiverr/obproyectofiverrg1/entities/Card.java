@@ -18,16 +18,16 @@ public class Card {
     @Column
     private String username;
     @Column
-    private String category;
+    private Integer category;
     @Column
-    private Double rating;
+    private Integer rating;
     @Column
     private Double price;
 
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, String category,Double rating, Double price) {
+    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -37,7 +37,7 @@ public class Card {
         this.price = price;
     }
 
-    public Card(Long id, String title, String description, String username, String category,Double rating, Double price,
+    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price,
                 Set<Picture> pictures) {
         this.id = id;
         this.title = title;
@@ -87,19 +87,19 @@ public class Card {
         this.username = username;
     }
 
-    public String getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
-    public Double getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
