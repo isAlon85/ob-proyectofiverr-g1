@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface CarService {
+public interface CardService {
 
     ResponseEntity<List<Card>> findAll();
 
