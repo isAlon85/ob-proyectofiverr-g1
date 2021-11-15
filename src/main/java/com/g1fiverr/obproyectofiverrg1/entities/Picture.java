@@ -15,12 +15,12 @@ public class Picture {
     @Column
     private Long id;
 
-    @Column
-    private URI uri;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     private Card card;
+
+    @Column
+    private URI uri;
 
     public Picture() {
     }
@@ -34,14 +34,6 @@ public class Picture {
         return id;
     }
 
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,6 +44,14 @@ public class Picture {
 
     public void setUri(URI uri) {
         this.uri = uri;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     @Override

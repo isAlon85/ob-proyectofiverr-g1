@@ -12,6 +12,17 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "CARD_PICTURES",
+            joinColumns = {
+                    @JoinColumn(name = "CARD_ID", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "PICTURE_ID", referencedColumnName = "id") })
+
+    private Set<Picture> pictures = new HashSet<>();
+
     @Column
     private String title;
     @Column
@@ -37,28 +48,6 @@ public class Card {
         this.rating = rating;
         this.price = price;
     }
-
-//    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price,
-//                Set<Picture> pictures) {
-//        this.id = id;
-//        this.title = title;
-//        this.description = description;
-//        this.username = username;
-//        this.category = category;
-//        this.rating = rating;
-//        this.price = price;
-//        this.pictures = pictures;
-//    }
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "CARD_PICTURES",
-            joinColumns = {
-                    @JoinColumn(name = "CARD_ID", referencedColumnName = "id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "PICTURE_ID", referencedColumnName = "id") })
-
-    private Set<Picture> pictures = new HashSet<>();
 
     public void addPicture(Picture picture){
         pictures.add(picture);
