@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class CardController/*<CarService>*/ {
 
-    private final String ROOT = "/api/v1/cards";
+    private final String ROOT = "/api/cards";
     private final Logger log = LoggerFactory.getLogger(CardController.class);
     private CardServiceImpl cardService;
 

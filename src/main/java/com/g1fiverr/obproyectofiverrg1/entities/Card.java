@@ -1,5 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +29,7 @@ public class Card {
     private Double price;
 
     @OneToMany(mappedBy = "card")
+    @JsonBackReference
     private Set<Picture> pictures = new HashSet<>();
 
     public Card() {
@@ -51,12 +54,10 @@ public class Card {
         return pictures;
     }
 
-//    public void removePicture(Picture picture, boolean pictureExists){
-//        pictures.remove(picture);
-//        if (pictureExists) {
-//            picture.getCard().remove(this);
-//        }
-//    }
+    public void removePicture(Picture picture){
+        pictures.remove(picture);
+        picture.removeCard();
+    }
 
     public Long getId() {
         return id;
@@ -110,4 +111,16 @@ public class Card {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", username='" + username + '\'' +
+                ", category=" + category +
+                ", rating=" + rating +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -16,7 +16,7 @@ public class Picture {
     private Long id;
 
     @ManyToOne
-//    @JsonBackReference
+    @JsonBackReference
     private Card card;
 
     @Column
@@ -32,10 +32,6 @@ public class Picture {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUrl() {
@@ -54,4 +50,15 @@ public class Picture {
         this.card = card;
     }
 
+    public void removeCard() {
+        this.card = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class PictureController/*<CarService>*/ {
 
-    private final String ROOT = "/api/v1/pictures";
+    private final String ROOT = "/api/pictures";
     private final Logger log = LoggerFactory.getLogger(PictureController.class);
     private PictureServiceImpl pictureService;
 
