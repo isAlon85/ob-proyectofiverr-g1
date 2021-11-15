@@ -1,95 +1,22 @@
 package com.g1fiverr.obproyectofiverrg1.services;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
-import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class CardService {
+public interface CardService {
 
-    private CardRepository cardRepository;
+    ResponseEntity<List<Card>> findAll();
 
-    public CardService(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
+    ResponseEntity<Card> findOneById(Long id);
 
-    public ResponseEntity<List<Card>> findAll(){
-        if (cardRepository.count() == 0)
-            return ResponseEntity.notFound().build();
+    ResponseEntity<Card> create(Card card);
 
-        return ResponseEntity.ok(cardRepository.findAll());
-    }
+    ResponseEntity<Card> update(Card card);
 
-    public ResponseEntity<Card> findOneById(Long id){
-        Optional<Card> cardOpt = cardRepository.findById(id);
+    ResponseEntity delete(Long id);
 
-        if (cardOpt.isPresent())
-            return ResponseEntity.ok(cardOpt.get());
-        else
-            return ResponseEntity.notFound().build();
-    }
+    ResponseEntity deleteAll();
 
-//    //En desarrollo por Daniel
-//    public ResponseEntity<List<Card>> findByCategory(String category){
-//        Optional<List<Card>> listCardOpt = cardRepository.fi
-//    }
-
-    public ResponseEntity<Card> create(Card card){
-
-        if (card.getId() != null)
-            return ResponseEntity.badRequest().build();
-
-        if (card.getUsername().length() > 16) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        if (card.getDescription().length() > 50) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        Card result = cardRepository.save(card);
-        return ResponseEntity.ok(result);
-    }
-
-    public ResponseEntity<Card> update(Card card){
-
-        if (card.getId() == null)
-            return ResponseEntity.badRequest().build();
-
-        if (!cardRepository.existsById(card.getId()))
-            return ResponseEntity.notFound().build();
-
-        if (card.getUsername().length() > 16) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        if (card.getDescription().length() > 50) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        Card result = cardRepository.save(card);
-        return ResponseEntity.ok(result);
-    }
-
-    public ResponseEntity delete(Long id){
-
-        if (!cardRepository.existsById(id))
-            return ResponseEntity.notFound().build();
-
-        cardRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    public ResponseEntity deleteAll(){
-
-        if (cardRepository.count() == 0)
-            return ResponseEntity.notFound().build();
-
-        cardRepository.deleteAll();
-        return ResponseEntity.noContent().build();
-    }
 }

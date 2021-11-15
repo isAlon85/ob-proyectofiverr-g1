@@ -39,17 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    //Deshabilita CSRF para post sin token
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//    }
-
-//    @Bean
-//    public HttpFirewall looseHttpFirewall(){
-//        StrictHttpFirewall firewall = new StrictHttpFirewall();
-//        firewall.setAllowBackSlash(true);
-//        firewall.setAllowSemicolon(true);
-//        return firewall;
-//    }
+    @Bean
+    public HttpFirewall looseHttpFirewall(){
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowBackSlash(true);
+        firewall.setAllowSemicolon(true);
+        return firewall;
+    }
 }

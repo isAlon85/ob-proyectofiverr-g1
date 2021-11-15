@@ -1,7 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.controllers;
 
-import com.g1fiverr.obproyectofiverrg1.entities.Card;
-import com.g1fiverr.obproyectofiverrg1.services.CardServiceImpl;
+import com.g1fiverr.obproyectofiverrg1.entities.Picture;
+import com.g1fiverr.obproyectofiverrg1.services.PictureServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,63 +15,63 @@ import java.util.List;
 
 
 @RestController
-public class CardController/*<CarService>*/ {
+public class PictureController/*<CarService>*/ {
 
-    private final String ROOT = "/api/v1/cards";
-    private final Logger log = LoggerFactory.getLogger(CardController.class);
-    private CardServiceImpl cardService;
+    private final String ROOT = "/api/v1/pictures";
+    private final Logger log = LoggerFactory.getLogger(PictureController.class);
+    private PictureServiceImpl pictureService;
 
-    public CardController(CardServiceImpl cardService) {
-        this.cardService = (CardServiceImpl) cardService;
+    public PictureController(PictureServiceImpl pictureService) {
+        this.pictureService = (PictureServiceImpl) pictureService;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
-    @ApiOperation("Find all cards in DB")
-    public ResponseEntity<List<Card>> findAll() {
-        ResponseEntity result = cardService.findAll();
+    @ApiOperation("Find all pictures in DB")
+    public ResponseEntity<List<Picture>> findAll() {
+        ResponseEntity result = pictureService.findAll();
         return result;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/" + "{id}")
-    @ApiOperation("Find a card in DB by ID")
-    public ResponseEntity<Card> findOneById(@PathVariable Long id) {
-        return cardService.findOneById(id);
+    @ApiOperation("Find a picture in DB by ID")
+    public ResponseEntity<Picture> findOneById(@PathVariable Long id) {
+        return pictureService.findOneById(id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(ROOT)
-    @ApiOperation("Create a card in DB with a JSON")
-    public ResponseEntity<Card> create(@RequestBody Card card) {
-        ResponseEntity<Card> result = cardService.create(card);
+    @ApiOperation("Create a picture in DB with a JSON")
+    public ResponseEntity<Picture> create(@RequestBody Picture picture) {
+        ResponseEntity<Picture> result = pictureService.create(picture);
 
         if (result.getStatusCode().equals(HttpStatus.BAD_REQUEST))
-            log.warn("Trying to create a Card with ID");
+            log.warn("Trying to create a Picture with ID");
 
         return result;
     }
 
     @PutMapping(ROOT)
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @ApiOperation("Update a card in DB with a JSON")
-    public ResponseEntity<Card> updateBook(@RequestBody Card card) {
-        ResponseEntity<Card> result = cardService.update(card);
+    @ApiOperation("Update a picture in DB with a JSON")
+    public ResponseEntity<Picture> updateBook(@RequestBody Picture picture) {
+        ResponseEntity<Picture> result = pictureService.update(picture);
 
         if (result.getStatusCode().equals(HttpStatus.BAD_REQUEST))
-            log.warn("Trying to update a Card without ID");
+            log.warn("Trying to update a Picture without ID");
 
         if (result.getStatusCode().equals(HttpStatus.NOT_FOUND))
-            log.warn("Trying to update a Card with a non existing ID");
+            log.warn("Trying to update a Picture with a non existing ID");
 
         return result;
     }
 
     @DeleteMapping(ROOT + "/" + "{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @ApiOperation("Delete a card in DB by ID")
+    @ApiOperation("Delete a picture in DB by ID")
     public ResponseEntity delete(@PathVariable Long id) {
-        ResponseEntity result = cardService.delete(id);
+        ResponseEntity result = pictureService.delete(id);
 
         if (result.getStatusCode().equals(HttpStatus.NOT_FOUND))
             log.warn("Trying to delete a laptop with a non existing ID");
@@ -83,7 +83,7 @@ public class CardController/*<CarService>*/ {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(ROOT + "/" + "restartDB")
     public ResponseEntity deleteAll(@RequestHeader HttpHeaders headers) {
-        ResponseEntity result = cardService.deleteAll();
+        ResponseEntity result = pictureService.deleteAll();
 
         if (result.getStatusCode().equals(HttpStatus.NOT_FOUND))
             log.warn("The DB is already empty");
