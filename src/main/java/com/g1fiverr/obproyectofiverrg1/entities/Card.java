@@ -137,4 +137,16 @@ public class Card {
                 ", pictures=" + pictures +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Card)) return false;
+        return id != null && id.equals(((Card) obj).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
