@@ -110,18 +110,4 @@ public class Card {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", username='" + username + '\'' +
-                ", category=" + category +
-                ", rating=" + rating +
-                ", price=" + price +
-                ", pictures=" + pictures +
-                '}';
-    }
-
 }

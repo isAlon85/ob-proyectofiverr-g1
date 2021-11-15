@@ -38,11 +38,11 @@ public class Picture {
         this.id = id;
     }
 
-    public String getUri() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUri(URI uri) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -53,6 +53,5 @@ public class Picture {
     public void setCard(Card card) {
         this.card = card;
     }
-
 
 }
