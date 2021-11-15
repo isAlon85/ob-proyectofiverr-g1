@@ -13,16 +13,6 @@ public class Card {
     @Column
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(name = "CARD_PICTURES",
-            joinColumns = {
-                    @JoinColumn(name = "CARD_ID", referencedColumnName = "id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "PICTURE_ID", referencedColumnName = "id") })
-
-    private Set<Picture> pictures = new HashSet<>();
-
     @Column
     private String title;
     @Column
@@ -35,6 +25,9 @@ public class Card {
     private Integer rating;
     @Column
     private Double price;
+
+    @OneToMany(mappedBy = "card")
+    private Set<Picture> pictures = new HashSet<>();
 
     public Card() {
     }
@@ -52,6 +45,10 @@ public class Card {
     public void addPicture(Picture picture){
         pictures.add(picture);
         picture.setCard(this);
+    }
+
+    public Set<Picture> getPictures(){
+        return pictures;
     }
 
 //    public void removePicture(Picture picture, boolean pictureExists){
@@ -127,15 +124,4 @@ public class Card {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Card)) return false;
-        return id != null && id.equals(((Card) obj).getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

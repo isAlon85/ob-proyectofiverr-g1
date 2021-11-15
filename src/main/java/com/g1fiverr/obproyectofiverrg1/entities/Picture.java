@@ -15,19 +15,19 @@ public class Picture {
     @Column
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
+    @ManyToOne
+//    @JsonBackReference
     private Card card;
 
     @Column
-    private URI uri;
+    private String url;
 
     public Picture() {
     }
 
-    public Picture(Long id, URI uri) {
+    public Picture(Long id, String url) {
         this.id = id;
-        this.uri = uri;
+        this.url = url;
     }
 
     public Long getId() {
@@ -38,12 +38,12 @@ public class Picture {
         this.id = id;
     }
 
-    public URI getUri() {
-        return uri;
+    public String getUri() {
+        return url;
     }
 
     public void setUri(URI uri) {
-        this.uri = uri;
+        this.url = url;
     }
 
     public Card getCard() {
@@ -54,16 +54,5 @@ public class Picture {
         this.card = card;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uri);
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Card card = (Card) obj;
-        return Objects.equals(id, card.getId());
-    }
 }
