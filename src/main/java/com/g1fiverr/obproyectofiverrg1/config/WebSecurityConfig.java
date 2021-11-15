@@ -17,10 +17,20 @@ import org.springframework.security.web.firewall.StrictHttpFirewall;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .and().httpBasic();
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .withUser("user").password(passwordEncoder().encode("password")).roles("USER").and()
+//                .withUser("user").password(passwordEncoder().encode("password")).roles("USER").and()
                 .withUser("admin").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");
     }
 
