@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CardService {
+public class CardServiceImpl implements CarService{
 
     private CardRepository cardRepository;
 
-    public CardService(CardRepository cardRepository) {
+    public CardServiceImpl(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 
+    @Override
     public ResponseEntity<List<Card>> findAll(){
         if (cardRepository.count() == 0)
             return ResponseEntity.notFound().build();
@@ -24,6 +25,7 @@ public class CardService {
         return ResponseEntity.ok(cardRepository.findAll());
     }
 
+    @Override
     public ResponseEntity<Card> findOneById(Long id){
         Optional<Card> cardOpt = cardRepository.findById(id);
 
@@ -38,6 +40,7 @@ public class CardService {
 //        Optional<List<Card>> listCardOpt = cardRepository.fi
 //    }
 
+    @Override
     public ResponseEntity<Card> create(Card card){
 
         if (card.getId() != null)
@@ -55,6 +58,7 @@ public class CardService {
         return ResponseEntity.ok(result);
     }
 
+    @Override
     public ResponseEntity<Card> update(Card card){
 
         if (card.getId() == null)
@@ -75,6 +79,7 @@ public class CardService {
         return ResponseEntity.ok(result);
     }
 
+    @Override
     public ResponseEntity delete(Long id){
 
         if (!cardRepository.existsById(id))
@@ -84,6 +89,7 @@ public class CardService {
         return ResponseEntity.noContent().build();
     }
 
+    @Override
     public ResponseEntity deleteAll(){
 
         if (cardRepository.count() == 0)

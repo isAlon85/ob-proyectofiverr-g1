@@ -1,7 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.controllers;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
-import com.g1fiverr.obproyectofiverrg1.services.CardService;
+import com.g1fiverr.obproyectofiverrg1.services.CardServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +19,10 @@ public class CardController/*<CarService>*/ {
 
     private final String ROOT = "/api/v1/cards";
     private final Logger log = LoggerFactory.getLogger(CardController.class);
-    private CardService cardService;
+    private CardServiceImpl cardService;
 
-    public CardController(CardService cardService) {
-        this.cardService = (CardService) cardService;
+    public CardController(CardServiceImpl cardService) {
+        this.cardService = (CardServiceImpl) cardService;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
