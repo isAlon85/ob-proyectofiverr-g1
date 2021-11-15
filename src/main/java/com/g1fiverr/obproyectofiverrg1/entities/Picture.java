@@ -1,6 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1.entities;
 
 import javax.persistence.*;
+import java.net.URI;
 
 @Entity
 @Table(name = "pictures")
@@ -10,21 +11,16 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
     @Column
-    private String title;
-    @Column
-    private String description;
-    @Column
-    private String url;
+    private URI uri;
 
     public Picture() {
     }
 
-    public Picture(Long id, String title, String description, String url) {
+    public Picture(Long id, URI uri) {
         this.id = id;
-        this.title = title;
-        this.description = description;
-        this.url = url;
+        this.uri = uri;
     }
 
     public Long getId() {
@@ -35,37 +31,11 @@ public class Picture {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public URI getUri() {
+        return uri;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return "Picture{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+    public void setUri(URI uri) {
+        this.uri = uri;
     }
 }

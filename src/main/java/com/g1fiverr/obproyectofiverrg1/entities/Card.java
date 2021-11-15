@@ -50,7 +50,7 @@ public class Card {
     }
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "CARD_FOTOS",
+    @JoinTable(name = "CARD_PICTURES",
             joinColumns = {
                     @JoinColumn(name = "CARD_ID")
             },
