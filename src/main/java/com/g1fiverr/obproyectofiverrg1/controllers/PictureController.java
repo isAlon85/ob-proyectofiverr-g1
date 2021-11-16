@@ -34,21 +34,21 @@ public class PictureController {
         this.cardRepository = cardRepository;
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all pictures in DB")
     public ResponseEntity<List<Picture>> findAll() {
         return pictureService.findAll();
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/" + "{id}")
     @ApiOperation("Find a picture in DB by ID")
     public ResponseEntity<Picture> findOneById(@PathVariable Long id) {
         return pictureService.findOneById(id);
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(ROOT + "/" + "{card_id}")
     @ApiOperation("Create a picture in DB with a JSON")
     public ResponseEntity<Card> create(@RequestBody Picture picture, @PathVariable Long card_id) {
@@ -69,7 +69,7 @@ public class PictureController {
     }
 
     @PutMapping(ROOT)
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Update a picture in DB with a JSON")
     public ResponseEntity<Picture> updateBook(@RequestBody Picture picture) {
         ResponseEntity<Picture> result = pictureService.update(picture);
@@ -84,7 +84,7 @@ public class PictureController {
     }
 
     @DeleteMapping(ROOT + "/" + "{id}")
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Delete a picture in DB by ID")
     public ResponseEntity delete(@PathVariable Long id) {
         ResponseEntity result = pictureService.delete(id);
@@ -96,7 +96,7 @@ public class PictureController {
     }
 
     //    @ApiIgnore
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(ROOT + "/" + "restartDB")
     public ResponseEntity deleteAll(@RequestHeader HttpHeaders headers) {
         ResponseEntity result = pictureService.deleteAll();

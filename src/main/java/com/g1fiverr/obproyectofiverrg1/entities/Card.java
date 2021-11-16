@@ -36,7 +36,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username,Integer category, Integer rating, Double price) {
+    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -45,6 +45,8 @@ public class Card {
         this.category = category;
         this.price = price;
     }
+
+
 
     public void addPicture(Picture picture){
         pictures.add(picture);

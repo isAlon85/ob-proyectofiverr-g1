@@ -30,8 +30,8 @@ public class ObProyectofiverrG1Application {
 		Card card7= new Card(null, "Título 7", "Card sin imagenes asociadas", "Indio7", 4,1, 7.99D);
 
 		Picture picture1 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-design.jpg");
-		Picture picture2 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-desig.jpg");
-		Picture picture3 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-desi.jpg");
+		Picture picture2 = new Picture(null, "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs2/157750073/original/2ebbcdec8dfa206d22464f93e50d5429f5631523.png");
+		Picture picture3 = new Picture(null, "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs3/157750073/original/7fad27143dca2503db2efcc620d299ae2f76d0cd.png");
 		Picture picture4 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-des.jpg");
 		Picture picture5 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-d.jpg");
 		Picture picture6 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-.jpg");
