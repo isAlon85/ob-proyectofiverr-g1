@@ -29,7 +29,7 @@ public class Card {
     private Double price;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    @JsonBackReference
+    //@JsonBackReference
     private final Set<Picture> pictures = new HashSet<>();
 
 
