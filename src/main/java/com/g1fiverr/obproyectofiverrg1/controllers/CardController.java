@@ -80,7 +80,7 @@ public class CardController {
         ResponseEntity result = cardService.delete(id);
 
         if (result.getStatusCode().equals(HttpStatus.NOT_FOUND))
-            log.warn("Trying to delete a laptop with a non existing ID");
+            log.warn("Trying to delete a Card with a non existing ID");
 
         return result;
     }
