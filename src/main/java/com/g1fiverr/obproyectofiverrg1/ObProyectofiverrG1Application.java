@@ -4,6 +4,7 @@ import com.g1fiverr.obproyectofiverrg1.entities.Card;
 import com.g1fiverr.obproyectofiverrg1.entities.Category;
 import com.g1fiverr.obproyectofiverrg1.entities.Picture;
 import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
+import com.g1fiverr.obproyectofiverrg1.repositories.CategoryRepository;
 import com.g1fiverr.obproyectofiverrg1.repositories.PictureRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,7 @@ public class ObProyectofiverrG1Application {
 		ApplicationContext context = SpringApplication.run(ObProyectofiverrG1Application.class, args);
 		CardRepository cardRepository = context.getBean(CardRepository.class);
 		PictureRepository pictureRepository = context.getBean(PictureRepository.class);
+		CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
 
 		System.out.println("Number of cards in DB when repository initialized: " + cardRepository.findAll().size());
 		System.out.println("Number of pictures in DB when repository initialized:: " + pictureRepository.findAll().size());
