@@ -62,14 +62,13 @@ public class CardServiceImpl implements CardService {
             return ResponseEntity.badRequest().build();
         }
         Card result = cardRepository.save(card);
-//        System.out.println(result.getPictures().stream().count());
-//        System.out.println(card.getPictures().stream().count());
-//        System.out.println(result.getPictures().toString());
-        Iterator<Picture> it = result.getPictures().iterator();
-        while(it.hasNext()) {
-            result.addPicture(it.next());
+        if (card.getPictures() != null) {
+            Iterator<Picture> it = result.getPictures().iterator();
+            while (it.hasNext()) {
+                result.addPicture(it.next());
+            }
+            result = cardRepository.save(result);
         }
-        result = cardRepository.save(result);
         return ResponseEntity.ok(result);
     }
 
@@ -101,13 +100,17 @@ public class CardServiceImpl implements CardService {
         if (card.getTitle().length() > 50) {
             return ResponseEntity.badRequest().build();
         }
-
-        Card result = cardRepository.save(card);
-        Iterator<Picture> it = result.getPictures().iterator();
-        while(it.hasNext()) {
-            result.addPicture(it.next());
+        while (cardRepository.findById(card.getId()).get().getPictures().stream().count() != 0) {
+            cardRepository.findById(card.getId()).get().removePicture(cardRepository.findById(card.getId()).get().getPictures().iterator().next());
         }
-        result = cardRepository.save(result);
+        Card result = cardRepository.save(card);
+        if (card.getPictures() != null) {
+            Iterator<Picture> it = result.getPictures().iterator();
+            while (it.hasNext()) {
+                result.addPicture(it.next());
+            }
+            result = cardRepository.save(result);
+        }
         return ResponseEntity.ok(result);
     }
 

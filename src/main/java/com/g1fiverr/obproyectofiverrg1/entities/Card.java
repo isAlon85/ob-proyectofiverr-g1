@@ -30,7 +30,7 @@ public class Card {
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     //@JsonBackReference
-    private final Set<Picture> pictures = new HashSet<>();
+    private Set<Picture> pictures = new HashSet<>();
 
 
     public Card() {
@@ -46,15 +46,22 @@ public class Card {
         this.price = price;
     }
 
-
-
     public void addPicture(Picture picture){
         pictures.add(picture);
         picture.setCard(this);
     }
 
+    public void removePicture(Picture picture){
+        pictures.remove(picture);
+        picture.removeCard();
+    }
+
     public Set<Picture> getPictures(){
         return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     public Integer getCategory() {
