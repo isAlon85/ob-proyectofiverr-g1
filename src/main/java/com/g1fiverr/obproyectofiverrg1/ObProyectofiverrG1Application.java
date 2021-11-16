@@ -1,6 +1,7 @@
 package com.g1fiverr.obproyectofiverrg1;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
+import com.g1fiverr.obproyectofiverrg1.entities.Category;
 import com.g1fiverr.obproyectofiverrg1.entities.Picture;
 import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
 import com.g1fiverr.obproyectofiverrg1.repositories.PictureRepository;
@@ -18,16 +19,17 @@ public class ObProyectofiverrG1Application {
 		CardRepository cardRepository = context.getBean(CardRepository.class);
 		PictureRepository pictureRepository = context.getBean(PictureRepository.class);
 
-		System.out.println("Card's number in DB when repository initialized: " + cardRepository.findAll().size());
-		System.out.println("Picture's number in DB when repository initialized:: " + pictureRepository.findAll().size());
+		System.out.println("Number of cards in DB when repository initialized: " + cardRepository.findAll().size());
+		System.out.println("Number of pictures in DB when repository initialized:: " + pictureRepository.findAll().size());
+		System.out.println("Number of categories in DB when repository initialized:: " + categoryRepository.findAll().size());
 
-		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", 2,5, 12.99D);
-		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", 3,3, 9.99D);
-		Card card3 = new Card(null, "Título 3", "Probando 1 2 3", "Indio3", 8,5, 19.99D);
-		Card card4= new Card(null, "Título 4", "Ahora probamos una descripción con muchos caracteres", "Indio4", 7,1, 9.99D);
-		Card card5 = new Card(null, "Título 5", "!!!", "Indio5", 1,5, 14.99D);
-		Card card6= new Card(null, "Título 6", "Seguimos testeando", "Indio6", 7,2, 9.99D);
-		Card card7= new Card(null, "Título 7", "Card sin imagenes asociadas", "Indio7", 2,1, 7.99D);
+		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", 5, 12.99D);
+		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", 3, 9.99D);
+		Card card3 = new Card(null, "Título 3", "Probando 1 2 3", "Indio3", 5, 19.99D);
+		Card card4= new Card(null, "Título 4", "Ahora probamos una descripción con muchos caracteres", "Indio4", 1, 9.99D);
+		Card card5 = new Card(null, "Título 5", "!!!", "Indio5", 5, 14.99D);
+		Card card6= new Card(null, "Título 6", "Seguimos testeando", "Indio6", 2, 9.99D);
+		Card card7= new Card(null, "Título 7", "Card sin imagenes asociadas", "Indio7", 1, 7.99D);
 
 		Picture picture1 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-design.jpg");
 		Picture picture2 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-desig.jpg");
@@ -54,10 +56,24 @@ public class ObProyectofiverrG1Application {
 		card5.addPicture(pictureA);
 		card6.addPicture(pictureB);
 		card6.addPicture(pictureC);
+		card7.addPicture(pictureC);
+
+		Category category1 = new Category(null, "Diseñador web");
+		Category category2 = new Category(null, "Programador");
+		Category category3 = new Category(null, "Diseñador Gráfico");
+
+		card1.addCategory(category1);
+		card2.addCategory(category1);
+		card3.addCategory(category2);
+		card4.addCategory(category2);
+		card5.addCategory(category3);
+		card6.addCategory(category3);
+		card7.addCategory(category3);
 
 		cardRepository.saveAll(Arrays.asList(card1, card2, card3, card4, card5, card6, card7));
 		pictureRepository.saveAll(Arrays.asList(picture1, picture2, picture3, picture4, picture5, picture6,
 				picture7, picture8, picture9, pictureA, pictureB, pictureC));
+		categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
 
 		System.out.println("Card 1 picture count: " + card1.getPictures().stream().count());
 		System.out.println("Card 2 picture count: " + card2.getPictures().stream().count());
@@ -80,9 +96,9 @@ public class ObProyectofiverrG1Application {
 		System.out.println("Picture B card: " + pictureB.getCard().getId());
 		System.out.println("Picture C card: " + pictureC.getCard().getId());
 
-
-		System.out.println("Card's number in DB after executing main: " + cardRepository.findAll().size());
-		System.out.println("Picture's number in DB after executing main: " + pictureRepository.findAll().size());
+		System.out.println("Number of cards in DB after executing main: " + cardRepository.findAll().size());
+		System.out.println("Number of pictures in DB after executing main: " + pictureRepository.findAll().size());
+		System.out.println("Number of pictures in DB after executing main: " + categoryRepository.findAll().size());
 	}
 
 }

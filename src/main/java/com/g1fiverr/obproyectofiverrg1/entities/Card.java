@@ -22,8 +22,6 @@ public class Card {
     @Column
     private String username;
     @Column
-    private Integer category;
-    @Column
     private Integer rating;
     @Column
     private Double price;
@@ -32,15 +30,18 @@ public class Card {
     @JsonBackReference
     private Set<Picture> pictures = new HashSet<>();
 
+    @ManyToOne
+    @JsonBackReference
+    private Category category;
+
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price) {
+    public Card(Long id, String title, String description, String username, Integer rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.username = username;
-        this.category = category;
         this.rating = rating;
         this.price = price;
     }
@@ -54,9 +55,12 @@ public class Card {
         return pictures;
     }
 
-    public void removePicture(Picture picture){
-        pictures.remove(picture);
-        picture.removeCard();
+    public Category getCategory() {
+        return category;
+    }
+
+    public void addCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {
@@ -85,14 +89,6 @@ public class Card {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Integer getCategory() {
-        return category;
-    }
-
-    public void setCategory(Integer category) {
-        this.category = category;
     }
 
     public Integer getRating() {
