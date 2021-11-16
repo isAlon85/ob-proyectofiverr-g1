@@ -15,22 +15,21 @@ import java.util.List;
 
 
 @RestController
-public class PictureController/*<CarService>*/ {
+public class PictureController {
 
     private final String ROOT = "/api/pictures";
     private final Logger log = LoggerFactory.getLogger(PictureController.class);
-    private PictureServiceImpl pictureService;
+    private final PictureServiceImpl pictureService;
 
     public PictureController(PictureServiceImpl pictureService) {
-        this.pictureService = (PictureServiceImpl) pictureService;
+        this.pictureService = pictureService;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all pictures in DB")
     public ResponseEntity<List<Picture>> findAll() {
-        ResponseEntity result = pictureService.findAll();
-        return result;
+        return pictureService.findAll();
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")

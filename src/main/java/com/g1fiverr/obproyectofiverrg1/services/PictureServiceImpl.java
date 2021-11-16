@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class PictureServiceImpl implements PictureService{
 
-    private PictureRepository pictureRepository;
+    private final PictureRepository pictureRepository;
 
     public PictureServiceImpl(PictureRepository pictureRepository) {
         this.pictureRepository = pictureRepository;

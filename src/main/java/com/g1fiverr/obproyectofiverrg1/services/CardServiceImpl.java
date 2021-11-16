@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class CardServiceImpl implements CardService {
 
-    private CardRepository cardRepository;
+    private final CardRepository cardRepository;
 
     public CardServiceImpl(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
@@ -27,6 +27,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public ResponseEntity<List<Card>> findByCategory(Integer category){
+        if (cardRepository.findByCategory(category).size() == 0)
+            return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok(cardRepository.findByCategory(category));
     }
 

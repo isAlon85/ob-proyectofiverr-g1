@@ -30,18 +30,19 @@ public class Card {
 
     @OneToMany(mappedBy = "card")
     @JsonBackReference
-    private Set<Picture> pictures = new HashSet<>();
+    private final Set<Picture> pictures = new HashSet<>();
+
 
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price) {
+    public Card(Long id, String title, String description, String username,Integer category, Integer rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.username = username;
-        this.category = category;
         this.rating = rating;
+        this.category = category;
         this.price = price;
     }
 
@@ -54,9 +55,12 @@ public class Card {
         return pictures;
     }
 
-    public void removePicture(Picture picture){
-        pictures.remove(picture);
-        picture.removeCard();
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 
     public Long getId() {
@@ -85,14 +89,6 @@ public class Card {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Integer getCategory() {
-        return category;
-    }
-
-    public void setCategory(Integer category) {
-        this.category = category;
     }
 
     public Integer getRating() {
