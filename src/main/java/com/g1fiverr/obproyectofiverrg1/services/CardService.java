@@ -9,6 +9,8 @@ public interface CardService {
 
     ResponseEntity<List<Card>> findAll();
 
+    ResponseEntity<List<Card>> findByCategory(Integer category);
+
     ResponseEntity<Card> findOneById(Long id);
 
     ResponseEntity<Card> create(Card card);

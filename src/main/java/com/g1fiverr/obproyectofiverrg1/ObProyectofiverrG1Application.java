@@ -21,13 +21,13 @@ public class ObProyectofiverrG1Application {
 		System.out.println("Card's number in DB when repository initialized: " + cardRepository.findAll().size());
 		System.out.println("Picture's number in DB when repository initialized:: " + pictureRepository.findAll().size());
 
-		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", 2,5, 12.99D);
-		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", 3,3, 9.99D);
-		Card card3 = new Card(null, "Título 3", "Probando 1 2 3", "Indio3", 8,5, 19.99D);
-		Card card4= new Card(null, "Título 4", "Ahora probamos una descripción con muchos caracteres", "Indio4", 7,1, 9.99D);
-		Card card5 = new Card(null, "Título 5", "!!!", "Indio5", 1,5, 14.99D);
-		Card card6= new Card(null, "Título 6", "Seguimos testeando", "Indio6", 7,2, 9.99D);
-		Card card7= new Card(null, "Título 7", "Card sin imagenes asociadas", "Indio7", 2,1, 7.99D);
+		Card card1 = new Card(null, "Título 1", "Carta de prueba", "Indio1", 1,5, 12.99D);
+		Card card2= new Card(null, "Título 2", "Esto es un testeo", "Indio2", 1,3, 9.99D);
+		Card card3 = new Card(null, "Título 3", "Probando 1 2 3", "Indio3", 1,5, 19.99D);
+		Card card4= new Card(null, "Título 4", "Ahora probamos una descripción con muchos caracteres", "Indio4", 2,1, 9.99D);
+		Card card5 = new Card(null, "Título 5", "!!!", "Indio5", 2,5, 14.99D);
+		Card card6= new Card(null, "Título 6", "Seguimos testeando", "Indio6", 3,2, 9.99D);
+		Card card7= new Card(null, "Título 7", "Card sin imagenes asociadas", "Indio7", 4,1, 7.99D);
 
 		Picture picture1 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-design.jpg");
 		Picture picture2 = new Picture(null, "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/200969812/original/5702308a024e74c35fed4e0d8c94a6eb6260a4ed/do-professional-full-website-creation-with-reponsive-desig.jpg");

@@ -26,6 +26,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public ResponseEntity<List<Card>> findByCategory(Integer category){
+        return ResponseEntity.ok(cardRepository.findByCategory(category));
+    }
+
+    @Override
     public ResponseEntity<Card> findOneById(Long id){
         Optional<Card> cardOpt = cardRepository.findById(id);
 
@@ -34,11 +39,6 @@ public class CardServiceImpl implements CardService {
         else
             return ResponseEntity.notFound().build();
     }
-
-//    //En desarrollo por Daniel
-//    public ResponseEntity<List<Card>> findByCategory(String category){
-//        Optional<List<Card>> listCardOpt = cardRepository.fi
-//    }
 
     @Override
     public ResponseEntity<Card> create(Card card){

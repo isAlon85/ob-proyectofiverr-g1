@@ -15,22 +15,28 @@ import java.util.List;
 
 
 @RestController
-public class CardController/*<CarService>*/ {
+public class CardController {
 
     private final String ROOT = "/api/cards";
     private final Logger log = LoggerFactory.getLogger(CardController.class);
-    private CardServiceImpl cardService;
+    private final CardServiceImpl cardService;
 
     public CardController(CardServiceImpl cardService) {
-        this.cardService = (CardServiceImpl) cardService;
+        this.cardService = cardService;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all cards in DB")
     public ResponseEntity<List<Card>> findAll() {
-        ResponseEntity result = cardService.findAll();
-        return result;
+        return cardService.findAll();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @GetMapping(ROOT + "/category/" + "{category}")
+    @ApiOperation("Find cards by category in DB")
+    public ResponseEntity<List<Card>> findByCategory(@PathVariable Integer category) {
+        return cardService.findByCategory(category);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
@@ -79,7 +85,6 @@ public class CardController/*<CarService>*/ {
         return result;
     }
 
-    //    @ApiIgnore
     @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(ROOT + "/" + "restartDB")
     public ResponseEntity deleteAll(@RequestHeader HttpHeaders headers) {
