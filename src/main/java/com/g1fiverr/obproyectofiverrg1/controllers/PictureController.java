@@ -1,6 +1,9 @@
 package com.g1fiverr.obproyectofiverrg1.controllers;
 
+import com.g1fiverr.obproyectofiverrg1.entities.Card;
 import com.g1fiverr.obproyectofiverrg1.entities.Picture;
+import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
+import com.g1fiverr.obproyectofiverrg1.services.CardServiceImpl;
 import com.g1fiverr.obproyectofiverrg1.services.PictureServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -20,9 +24,14 @@ public class PictureController {
     private final String ROOT = "/api/pictures";
     private final Logger log = LoggerFactory.getLogger(PictureController.class);
     private final PictureServiceImpl pictureService;
+    private final CardServiceImpl cardService;
+    private final CardRepository cardRepository;
 
-    public PictureController(PictureServiceImpl pictureService) {
+    public PictureController(PictureServiceImpl pictureService, CardServiceImpl cardService,
+                                CardRepository cardRepository) {
         this.pictureService = pictureService;
+        this.cardService = cardService;
+        this.cardRepository = cardRepository;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
@@ -40,15 +49,23 @@ public class PictureController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @PostMapping(ROOT)
+    @PostMapping(ROOT + "/" + "{card_id}")
     @ApiOperation("Create a picture in DB with a JSON")
-    public ResponseEntity<Picture> create(@RequestBody Picture picture) {
-        ResponseEntity<Picture> result = pictureService.create(picture);
+    public ResponseEntity<Card> create(@RequestBody Picture picture, @PathVariable Long card_id) {
+        ResponseEntity<Picture> resultPicture = pictureService.create(picture);
+        ResponseEntity<Card> resultCard = cardService.addPicture(card_id, picture);
 
-        if (result.getStatusCode().equals(HttpStatus.BAD_REQUEST))
+        if (resultPicture.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
             log.warn("Trying to create a Picture with ID");
+            return ResponseEntity.badRequest().build();
+        }
 
-        return result;
+        if (resultCard.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
+            log.warn("Trying to access a Card that doesn't exist");
+            return ResponseEntity.badRequest().build();
+        }
+
+        return resultCard;
     }
 
     @PutMapping(ROOT)

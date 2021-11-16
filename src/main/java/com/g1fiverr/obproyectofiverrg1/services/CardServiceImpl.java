@@ -1,7 +1,9 @@
 package com.g1fiverr.obproyectofiverrg1.services;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
+import com.g1fiverr.obproyectofiverrg1.entities.Picture;
 import com.g1fiverr.obproyectofiverrg1.repositories.CardRepository;
+import com.g1fiverr.obproyectofiverrg1.repositories.PictureRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,11 @@ import java.util.Optional;
 public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
+    private final PictureRepository pictureRepository;
 
-    public CardServiceImpl(CardRepository cardRepository) {
+    public CardServiceImpl(CardRepository cardRepository, PictureRepository pictureRepository) {
         this.cardRepository = cardRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -60,6 +64,18 @@ public class CardServiceImpl implements CardService {
         Card result = cardRepository.save(card);
         return ResponseEntity.ok(result);
     }
+
+    @Override
+    public ResponseEntity<Card> addPicture(Long card_id, Picture picture){
+        Optional<Card> resultCard = cardRepository.findById(card_id);
+        resultCard.get().addPicture(picture);
+
+        cardRepository.save(resultCard.get());
+        pictureRepository.save(picture);
+
+        return ResponseEntity.ok(resultCard.get());
+    }
+
 
     @Override
     public ResponseEntity<Card> update(Card card){
