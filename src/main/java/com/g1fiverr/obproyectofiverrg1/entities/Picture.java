@@ -3,8 +3,6 @@ package com.g1fiverr.obproyectofiverrg1.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.net.URI;
-import java.util.Objects;
 
 @Entity
 @Table(name = "pictures")

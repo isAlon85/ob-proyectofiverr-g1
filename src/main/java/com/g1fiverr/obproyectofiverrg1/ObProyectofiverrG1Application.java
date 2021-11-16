@@ -55,7 +55,7 @@ public class ObProyectofiverrG1Application {
 		card6.addPicture(pictureB);
 		card6.addPicture(pictureC);
 
-		cardRepository.saveAll(Arrays.asList(card1, card2, card3, card4, card5, card6));
+		cardRepository.saveAll(Arrays.asList(card1, card2, card3, card4, card5, card6, card7));
 		pictureRepository.saveAll(Arrays.asList(picture1, picture2, picture3, picture4, picture5, picture6,
 				picture7, picture8, picture9, pictureA, pictureB, pictureC));
 
