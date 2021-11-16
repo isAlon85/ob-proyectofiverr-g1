@@ -47,10 +47,19 @@ public class Category {
 
     public void addCard(Card card){
         cards.add(card);
-        card.setCategory(this);
+        card.addCategory(this);
     }
 
     public Set<Card> getCards(){
         return cards;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cards=" + cards +
+                '}';
     }
 }
