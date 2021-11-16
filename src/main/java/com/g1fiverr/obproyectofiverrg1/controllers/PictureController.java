@@ -25,13 +25,10 @@ public class PictureController {
     private final Logger log = LoggerFactory.getLogger(PictureController.class);
     private final PictureServiceImpl pictureService;
     private final CardServiceImpl cardService;
-    private final CardRepository cardRepository;
 
-    public PictureController(PictureServiceImpl pictureService, CardServiceImpl cardService,
-                                CardRepository cardRepository) {
+    public PictureController(PictureServiceImpl pictureService, CardServiceImpl cardService) {
         this.pictureService = pictureService;
         this.cardService = cardService;
-        this.cardRepository = cardRepository;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
