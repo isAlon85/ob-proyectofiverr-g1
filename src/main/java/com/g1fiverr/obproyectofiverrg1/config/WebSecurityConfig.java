@@ -20,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").hasRole("ADMIN")
+                //AQUI SE HA QUITADO LA AUTENTICACION
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .and().httpBasic();
