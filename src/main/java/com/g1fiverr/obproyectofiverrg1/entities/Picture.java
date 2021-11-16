@@ -14,7 +14,7 @@ public class Picture {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private Card card;
 
     @Column
