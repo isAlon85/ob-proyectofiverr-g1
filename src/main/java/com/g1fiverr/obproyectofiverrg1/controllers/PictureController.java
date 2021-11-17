@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -49,20 +50,25 @@ public class PictureController {
     @PostMapping(ROOT + "/" + "{card_id}")
     @ApiOperation("Create a picture in DB with a JSON")
     public ResponseEntity<Card> create(@RequestBody Picture picture, @PathVariable Long card_id) {
-        ResponseEntity<Picture> resultPicture = pictureService.create(picture);
-        ResponseEntity<Card> resultCard = cardService.addPicture(card_id, picture);
+        try{
+            ResponseEntity<Picture> resultPicture = pictureService.create(picture);
+            ResponseEntity<Card> resultCard = cardService.addPicture(card_id, picture);
 
-        if (resultPicture.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
-            log.warn("Trying to create a Picture with ID");
+            if (resultPicture.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
+                log.warn("Trying to create a Picture with ID");
+                return ResponseEntity.badRequest().build();
+            }
+
+            if (resultCard.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
+                log.warn("Trying to access a Card that doesn't exist");
+                return ResponseEntity.badRequest().build();
+            }
+
+            return resultCard;
+        } catch (NoSuchElementException e){
             return ResponseEntity.badRequest().build();
         }
 
-        if (resultCard.getStatusCode().equals(HttpStatus.BAD_REQUEST)){
-            log.warn("Trying to access a Card that doesn't exist");
-            return ResponseEntity.badRequest().build();
-        }
-
-        return resultCard;
     }
 
     @PutMapping(ROOT)
