@@ -66,7 +66,7 @@ public class PictureController {
 
             return resultCard;
         } catch (NoSuchElementException e){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.notFound().build();
         }
 
     }
