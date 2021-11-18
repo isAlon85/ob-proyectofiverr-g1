@@ -34,9 +34,15 @@ public class CardController {
 
     //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/category/" + "{category}")
-    @ApiOperation("Find cards by category in DB")
+    @ApiOperation("Find cards in DB by category")
     public ResponseEntity<List<Card>> findByCategory(@PathVariable Integer category) {
         return cardService.findByCategory(category);
+    }
+
+    @GetMapping(ROOT + "/username/" + "{username")
+    @ApiOperation("Find cards in DB by username")
+    public ResponseEntity<List<Card>> findByUsername(@PathVariable String username){
+        return cardService.findByUsername(username);
     }
 
     //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")

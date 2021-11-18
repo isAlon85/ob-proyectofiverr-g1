@@ -12,6 +12,8 @@ public interface CardService {
 
     ResponseEntity<List<Card>> findByCategory(Integer category);
 
+    ResponseEntity<List<Card>> findByUsername(String username);
+
     ResponseEntity<Card> findOneById(Long id);
 
     ResponseEntity<Card> create(Card card);

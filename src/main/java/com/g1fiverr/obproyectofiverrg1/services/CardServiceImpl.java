@@ -39,6 +39,14 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public ResponseEntity<List<Card>> findByUsername(String username) {
+        if (cardRepository.findByUsername(username).size() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(cardRepository.findByUsername(username));
+    }
+
+    @Override
     public ResponseEntity<Card> findOneById(Long id){
         Optional<Card> cardOpt = cardRepository.findById(id);
 
