@@ -13,4 +13,6 @@ public interface CardRepository extends JpaRepository<Card,Long>{
 
     List<Card> findByUsername(String username);
 
+    List<Card> findByRating(Integer rating);
+
 }

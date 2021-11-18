@@ -14,6 +14,14 @@ public interface CardService {
 
     ResponseEntity<List<Card>> findByUsername(String username);
 
+    ResponseEntity<List<Card>> findByRating(Integer rating);
+
+    ResponseEntity<List<Card>> findByMaximalPrice(Double price);
+
+    ResponseEntity<List<Card>> findByMinimalPrice(Double price);
+
+    ResponseEntity<List<Card>> findByRangeOfPrices(Double minPrice, Double maxPrice);
+
     ResponseEntity<Card> findOneById(Long id);
 
     ResponseEntity<Card> create(Card card);

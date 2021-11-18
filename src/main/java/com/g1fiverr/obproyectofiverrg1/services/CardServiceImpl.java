@@ -50,6 +50,82 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public ResponseEntity<List<Card>> findByRating(Integer rating) {
+
+        if (cardRepository.findByRating(rating).size() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(cardRepository.findByRating(rating));
+
+    }
+
+    @Override
+    public ResponseEntity<List<Card>> findByMaximalPrice(Double price) {
+
+        List<Card> initialList = cardRepository.findAll();
+
+        if (initialList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        List<Card> finalList = new ArrayList<>();
+
+        for (Card card : initialList){
+            if (card.getPrice() <= price)
+                finalList.add(card);
+        }
+
+        if (finalList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(finalList);
+
+    }
+
+    @Override
+    public ResponseEntity<List<Card>> findByMinimalPrice(Double price) {
+
+        List<Card> initialList = cardRepository.findAll();
+
+        if (initialList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        List<Card> finalList = new ArrayList<>();
+
+        for (Card card : initialList){
+            if (card.getPrice() >= price)
+                finalList.add(card);
+        }
+
+        if (finalList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(finalList);
+
+    }
+
+    @Override
+    public ResponseEntity<List<Card>> findByRangeOfPrices(Double minPrice, Double maxPrice) {
+
+        List<Card> initialList = cardRepository.findAll();
+
+        if (initialList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        List<Card> finalList = new ArrayList<>();
+
+        for (Card card : initialList){
+            if (card.getPrice() >= minPrice && card.getPrice() <= maxPrice)
+                finalList.add(card);
+        }
+
+        if (finalList.size() == 0)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(finalList);
+
+    }
+
+    @Override
     public ResponseEntity<Card> findOneById(Long id){
         Optional<Card> cardOpt = cardRepository.findById(id);
 

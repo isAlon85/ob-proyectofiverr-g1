@@ -45,6 +45,30 @@ public class CardController {
         return cardService.findByUsername(username);
     }
 
+    @GetMapping(ROOT + "/rating/" + "{rating}")
+    @ApiOperation("Find cards in DB by rating")
+    public ResponseEntity<List<Card>> findByUsername(@PathVariable Integer rating){
+        return cardService.findByRating(rating);
+    }
+
+    @GetMapping(ROOT + "/max-price/" + "{price}")
+    @ApiOperation("Find cards in DB by maximal price")
+    public ResponseEntity<List<Card>> findByMaximalPrice(@PathVariable Double price){
+        return cardService.findByMaximalPrice(price);
+    }
+
+    @GetMapping(ROOT + "/min-price/" + "{price}")
+    @ApiOperation("Find cards in DB by minimal price")
+    public ResponseEntity<List<Card>> findByMinimalPrice(@PathVariable Double price){
+        return cardService.findByMinimalPrice(price);
+    }
+
+    @GetMapping(ROOT + "/rangeofprices/" + "{minPrice}/" + "{maxPrice}")
+    @ApiOperation("Find cards in DB by a range of prices")
+    public ResponseEntity<List<Card>> findByRangeOfPrices(@PathVariable Double minPrice, @PathVariable Double maxPrice){
+        return cardService.findByRangeOfPrices(minPrice, maxPrice);
+    }
+
     //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/" + "{id}")
     @ApiOperation("Find a card in DB by ID")
