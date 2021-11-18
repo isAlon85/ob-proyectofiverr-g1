@@ -1,7 +1,6 @@
 package com.g1fiverr.obproyectofiverrg1.repositories;
 
 import com.g1fiverr.obproyectofiverrg1.entities.Card;
-import com.g1fiverr.obproyectofiverrg1.entities.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

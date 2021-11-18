@@ -39,7 +39,7 @@ public class CardController {
         return cardService.findByCategory(category);
     }
 
-    @GetMapping(ROOT + "/username/" + "{username")
+    @GetMapping(ROOT + "/username/" + "{username}")
     @ApiOperation("Find cards in DB by username")
     public ResponseEntity<List<Card>> findByUsername(@PathVariable String username){
         return cardService.findByUsername(username);

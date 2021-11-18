@@ -7,6 +7,7 @@ import com.g1fiverr.obproyectofiverrg1.repositories.PictureRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +41,12 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public ResponseEntity<List<Card>> findByUsername(String username) {
+
         if (cardRepository.findByUsername(username).size() == 0)
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(cardRepository.findByUsername(username));
+
     }
 
     @Override
