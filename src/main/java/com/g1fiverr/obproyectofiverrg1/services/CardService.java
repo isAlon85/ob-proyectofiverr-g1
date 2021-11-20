@@ -10,7 +10,7 @@ public interface CardService {
 
     ResponseEntity<List<Card>> findAll();
 
-    ResponseEntity<List<Card>> findByCategory(Integer category);
+    ResponseEntity<List<Card>> findByCategory(String category);
 
     ResponseEntity<List<Card>> findByUsername(String username);
 

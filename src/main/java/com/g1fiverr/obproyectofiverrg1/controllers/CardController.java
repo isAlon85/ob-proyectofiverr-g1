@@ -25,17 +25,15 @@ public class CardController {
         this.cardService = cardService;
     }
 
-   //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT)
     @ApiOperation("Find all cards in DB")
     public ResponseEntity<List<Card>> findAll() {
         return cardService.findAll();
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/category/" + "{category}")
     @ApiOperation("Find cards in DB by category")
-    public ResponseEntity<List<Card>> findByCategory(@PathVariable Integer category) {
+    public ResponseEntity<List<Card>> findByCategory(@PathVariable String category) {
         return cardService.findByCategory(category);
     }
 
@@ -69,14 +67,12 @@ public class CardController {
         return cardService.findByRangeOfPrices(minPrice, maxPrice);
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(ROOT + "/" + "{id}")
     @ApiOperation("Find a card in DB by ID")
     public ResponseEntity<Card> findOneById(@PathVariable Long id) {
         return cardService.findOneById(id);
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(ROOT)
     @ApiOperation("Create a card in DB with a JSON")
     public ResponseEntity<Card> create(@RequestBody Card card) {
@@ -89,7 +85,6 @@ public class CardController {
     }
 
     @PutMapping(ROOT)
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Update a card in DB with a JSON")
     public ResponseEntity<Card> updateBook(@RequestBody Card card) {
         ResponseEntity<Card> result = cardService.update(card);
@@ -104,7 +99,6 @@ public class CardController {
     }
 
     @DeleteMapping(ROOT + "/" + "{id}")
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation("Delete a card in DB by ID")
     public ResponseEntity delete(@PathVariable Long id) {
         ResponseEntity result = cardService.delete(id);
@@ -115,7 +109,6 @@ public class CardController {
         return result;
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(ROOT + "/" + "restartDB")
     public ResponseEntity deleteAll(@RequestHeader HttpHeaders headers) {
         ResponseEntity result = cardService.deleteAll();

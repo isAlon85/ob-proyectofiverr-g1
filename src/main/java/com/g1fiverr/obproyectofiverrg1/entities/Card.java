@@ -22,7 +22,7 @@ public class Card {
     @Column
     private String username;
     @Column
-    private Integer category;
+    private String category;
     @Column
     private Integer rating;
     @Column
@@ -36,7 +36,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(Long id, String title, String description, String username, Integer category, Integer rating, Double price) {
+    public Card(Long id, String title, String description, String username, String category, Integer rating, Double price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -64,11 +64,11 @@ public class Card {
         this.pictures = pictures;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

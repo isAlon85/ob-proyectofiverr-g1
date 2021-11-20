@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CardRepository extends JpaRepository<Card,Long>{
 
-    List<Card> findByCategory(Integer category);
+    List<Card> findByCategory(String category);
 
     List<Card> findByUsername(String username);
 

@@ -32,7 +32,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public ResponseEntity<List<Card>> findByCategory(Integer category){
+    public ResponseEntity<List<Card>> findByCategory(String category){
         if (cardRepository.findByCategory(category).size() == 0)
             return ResponseEntity.notFound().build();
 
