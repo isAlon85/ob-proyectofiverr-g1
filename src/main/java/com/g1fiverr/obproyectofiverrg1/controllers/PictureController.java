@@ -20,6 +20,7 @@ import java.util.Optional;
 
 
 @RestController
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 public class PictureController {
 
     private final String ROOT = "/api/pictures";

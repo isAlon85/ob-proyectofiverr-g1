@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 public class CardController {
 
     private final String ROOT = "/api/cards";
