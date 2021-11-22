@@ -18,7 +18,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-
+/**
+ * Configuración del Controlador Rest de Pictures (clase responsable por "escuchar" las requisiciones HTTP)
+ * Ver url:port/swagger-ui/ para consultar la documentación
+ */
 @RestController
 @CrossOrigin (origins = "*", allowedHeaders = "*")
 public class PictureController {

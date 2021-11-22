@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Configuración del Controlador Rest de Cards (clase responsable por "escuchar" las requisiciones HTTP)
+ * Ver url:port/swagger-ui/ para consultar la documentación
+ */
 @RestController
 @CrossOrigin (origins = "*", allowedHeaders = "*")
 public class CardController {

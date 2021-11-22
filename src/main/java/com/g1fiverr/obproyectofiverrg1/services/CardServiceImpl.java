@@ -159,6 +159,12 @@ public class CardServiceImpl implements CardService {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * Añade una picture a una card a partir del ID enviado en la requisición
+     * @param card_id
+     * @param picture
+     * @return ResponseEntity<Card>
+     */
     @Override
     public ResponseEntity<Card> addPicture(Long card_id, Picture picture){
         Optional<Card> resultCard = cardRepository.findById(card_id);

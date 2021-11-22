@@ -11,6 +11,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.Collections;
 
+/**
+ * Configuración del Swagger (clase responsable por documentar los métodos utilizados en la API
+ * Accesible en url:port/swagger-ui/
+ */
 @Configuration
 public class SwaggerConfig {
 
